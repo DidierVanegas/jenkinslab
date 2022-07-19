@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("Image building") {
             steps {
-                sh 'docker build -t dvanegas/webserver:latest .'
+                sh 'docker build -t dvtdev/webserver:latest .'
             }
         }
         stage("Dockerhub login") {
@@ -18,12 +18,12 @@ pipeline {
         }
         stage("Image push") {
             steps {
-                sh 'docker push dvanegas/webserver:latest'
+                sh 'docker push dvtdev/webserver:latest'
             }
         }
         stage("Cleaning up") {
             steps {
-                sh "docker rmi dvanegas/webserver:latest"
+                sh "docker rmi dvtdev/webserverlatest"
             }
         }
     }
