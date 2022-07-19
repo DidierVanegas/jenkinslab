@@ -23,7 +23,7 @@ pipeline {
         }
         stage("Cleaning up") {
             steps {
-                sh "docker rmi dvtdev/webserverlatest"
+                sh "docker rmi dvtdev/webserver:latest"
             }
         }
     }
