@@ -4,6 +4,10 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub_cred')
     }
+
+    triggers {
+        githubPush()
+    }
     
     stages {
         stage("Image building") {
