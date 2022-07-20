@@ -6,24 +6,24 @@ pipeline {
     }
     
     stages {
-        stage("Image building") {
+        stage('Image building') {
             steps {
-                sh 'docker build -t dvtdev/webserver:latest .'
+                sh 'docker build -t dvtdev/webserver' + ':$BUILD_NUMBER' + ' .'
             }
         }
-        stage("Dockerhub login") {
+        stage('Dockerhub login') {
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage("Image push") {
+        stage('Image push') {
             steps {
-                sh 'docker push dvtdev/webserver:latest'
+                sh 'docker push dvtdev/webserver' + ':$BUILD_NUMBER'
             }
         }
-        stage("Cleaning up") {
+        stage('Cleaning up') {
             steps {
-                sh "docker rmi dvtdev/webserver:latest"
+                sh 'docker rmi dvtdev/webserver' + ':$BUILD_NUMBER'
             }
         }
     }
